@@ -47,7 +47,8 @@ export async function GET(
   // Multiply first to preserve
   // 10^6 precision before the integer division.
   const PRICE_PRECISION = BigInt(10) ** BigInt(6);
-  const price = (nav * PRICE_PRECISION) / totalSupply;
+  const price =
+    totalSupply > BigInt(0) ? (nav * PRICE_PRECISION) / totalSupply : BigInt(0);
 
   // marketCap = price × totalSupply = NAV (exact, no rounding).
   // Expressed in 10^6 units: divide NAV wei by 10^12.
