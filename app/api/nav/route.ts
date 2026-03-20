@@ -1,0 +1,19 @@
+import { NextResponse } from "next/server";
+import { STATIC_NAV_PAYLOAD } from "@/lib/nav-response";
+
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
+export async function GET() {
+  return NextResponse.json(
+    {
+      success: true,
+      data: STATIC_NAV_PAYLOAD,
+    },
+    {
+      headers: {
+        "Cache-Control": "no-store, max-age=0",
+      },
+    }
+  );
+}
